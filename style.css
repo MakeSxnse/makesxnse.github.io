@@ -128,7 +128,6 @@ nav li a:hover {
         max-height: 0px;
         overflow: hidden;
         transition: all ease-in-out .3s;
-        border: 1px solid #000000;
     }
 
     nav ul > .links > div {
