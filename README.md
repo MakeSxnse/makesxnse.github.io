@@ -28,11 +28,10 @@ Tento projekt slouží jako:
 - Základ pro e-shop s ručně vyráběnými produkty
 - Školní nebo vývojový prototyp webové aplikace
 
-## Možnosti rozšíření
+## Funkčnost webu
 
-- Přidání funkčního nákupního košíku a platební brány
+- Přidání funkčního nákupního košíku a přesměrování objednávek na instagram
 - Uživatelské účty a správa objednávek v rámci Django administrace
-- Multijazyčné rozhraní pomocí Django i18n
 - Optimalizace pro mobilní zařízení
 
 ```md
