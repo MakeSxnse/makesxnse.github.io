@@ -64,6 +64,10 @@
         padding: 10px;
         margin: 0;
     }
+
+    #typewriter-container {
+        font-size: 35px;
+    }
 }
 
 @media (max-width: 768px) {
@@ -89,6 +93,10 @@
         background-color: #0000007e;
         padding: 10px;
         margin: 0;
+    }
+
+    #typewriter-container {
+        font-size: 30px;
     }
 }
 
@@ -117,6 +125,10 @@
         padding: 10px;
         margin: 0;
     }
+
+    #typewriter-container {
+        font-size: 25px;
+    }
 }
 
 
@@ -144,6 +156,10 @@
         padding: 10px;
         margin: 0;
     }
+
+    #typewriter-container {
+        font-size: 20px;
+    }
 }
 
 @media (max-width: 325px) {
@@ -169,5 +185,9 @@
         background-color: #0000007e;
         padding: 10px;
         margin: 0;
+    }
+
+    #typewriter-container {
+        font-size: 15px;
     }
 }
