@@ -206,3 +206,42 @@ nav li a:hover {
         opacity: 1;
     }
 }
+
+#typewriter-container {
+  font-size: 40px;
+  white-space: pre;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50vh;
+}
+
+#cursor {
+  margin-left: 2px;
+  animation: blink 0.8s step-end infinite;
+  user-select: none;
+  color: red;
+}
+
+
+::-webkit-scrollbar {
+  width: 12px;             
+  height: 12px;             
+}
+
+::-webkit-scrollbar-track {
+  background: #f0f0f0;       
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #888;   
+  border-radius: 6px;
+  border: 3px solid #f0f0f0; 
+}
+
+/* jezdec při hoveru */
+::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
+
