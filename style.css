@@ -223,6 +223,43 @@ nav li a:hover {
   color: gray;
 }
 
+.photos {
+    display: flex;
+    width: 95%;
+    justify-content: center;
+    align-items: center;
+    gap: 78px;
+    margin: 20px 0 20px 0;
+}
+
+.item {
+    height: 573px;
+    width: 372px;    
+    transition: .3s ease;
+}
+
+/* .item:hover {
+    box-shadow: 10px 10px 0 black;
+    transform: translateY(-5px) translateX(-5px);
+} */
+
+.item1 {
+    background: url("/images/photos2.png");
+    background-size: cover;
+    background-position: center;
+}
+
+.item2 {
+    background: url("/images/photos1.png");
+    background-size: cover;
+    background-position: center;
+}
+
+.item3 {
+    background: url("/images/photos3.png");
+    background-size: cover;
+    background-position: center;
+}
 
 ::-webkit-scrollbar {
   width: 12px;             
@@ -238,7 +275,6 @@ nav li a:hover {
   border: 3px solid #f0f0f0; 
 }
 
-/* jezdec při hoveru */
 ::-webkit-scrollbar-thumb:hover {
   background-color: #555;
 }
