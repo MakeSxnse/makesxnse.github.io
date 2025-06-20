@@ -17,7 +17,7 @@
     nav ul > .links > div {
         padding: 40px 20px;
         flex-direction: column;
-        background-color: #f5f5f5;
+        background-color: #e6e6e6;
     }
 
     nav ul > .hamburger {
@@ -68,6 +68,16 @@
     #typewriter-container {
         font-size: 35px;
     }
+
+    .photos_items {
+        gap: 5px;
+        align-self: center;
+    }
+
+    .item {
+        height: 400px;
+        width: 300px;
+    }
 }
 
 @media (max-width: 768px) {
@@ -97,6 +107,17 @@
 
     #typewriter-container {
         font-size: 30px;
+    }
+
+    .photos_items {
+        gap: 20px;
+        align-self: center;
+        flex-direction: column;
+    }
+
+    .item {
+        height: 400px;
+        width: 300px;
     }
 }
 
@@ -129,6 +150,17 @@
     #typewriter-container {
         font-size: 25px;
     }
+
+    .photos_items {
+        gap: 10px;
+        align-self: center;
+        flex-direction: column;
+    }
+
+    .item {
+        height: 350px;
+        width: 250px;
+    }
 }
 
 
@@ -159,6 +191,17 @@
 
     #typewriter-container {
         font-size: 20px;
+    }
+
+    .photos_items {
+        gap: 10px;
+        align-self: center;
+        flex-direction: column;
+    }
+
+    .item {
+        height: 300px;
+        width: 200px;
     }
 }
 

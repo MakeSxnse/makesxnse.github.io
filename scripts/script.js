@@ -1,4 +1,4 @@
-  window.addEventListener("scroll", () => {
+ window.addEventListener("scroll", () => {
     const nav = document.querySelector("nav");
     const threshold = window.innerHeight * 0.05;
 
@@ -7,6 +7,10 @@
       nav.style.transition = "background-color 0.6s ease";
     } else {
       nav.style.backgroundColor = "rgba(255, 255, 255, 0)";
+
+
+
+
     }
   });
 
@@ -49,3 +53,4 @@ function typeWriter() {
 }
 
 typeWriter();
+
