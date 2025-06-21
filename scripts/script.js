@@ -1,28 +1,20 @@
-// ============================================
-// NAVIGATION SCROLL EFFECT
-// ============================================
 (function() {
   'use strict';
   
   function initNavScrollEffect() {
+    window.addEventListener("scroll", () => {
     const nav = document.querySelector("nav");
-    if (!nav) return;
-    
-    const threshold = window.innerHeight * 0.05;
-    
-    function handleScroll() {
-      if (window.scrollY > threshold) {
-        nav.style.backgroundColor = "#e6e6e6";
-        nav.style.transition = "background-color 0.5s ease";
-      } else {
-        nav.style.backgroundColor = "rgba(255, 255, 255, 0)";
-      }
+    const threshold = window.innerHeight * 0.0000000000000000001;
+    if (window.scrollY > threshold) {
+      nav.style.boxShadow = "0 0 10px black";
+      nav.style.transition = "box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out";
+    } 
+    if (window.scrollY < threshold) {
+      nav.style.boxShadow = "none";
     }
-    
-    window.addEventListener("scroll", handleScroll);
+});
   }
   
-  // Initialize when DOM is ready
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initNavScrollEffect);
   } else {
@@ -30,9 +22,6 @@
   }
 })();
 
-// ============================================
-// TYPEWRITER EFFECT
-// ============================================
 (function() {
   'use strict';
   
@@ -94,8 +83,7 @@
       }
     }
   };
-  
-  // Initialize when DOM is ready
+
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => TypewriterEffect.init());
   } else {
