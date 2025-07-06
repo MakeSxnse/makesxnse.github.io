@@ -17,12 +17,11 @@
     nav ul > .links > div {
         padding: 40px 20px;
         flex-direction: column;
-        background-color: #e6e6e6;
+        background-color: #f5f5f5;
     }
 
     nav ul > .hamburger {
         display: flex;
-
     }
 
     nav ul {
@@ -39,6 +38,31 @@
         background: none;
     }
 } 
+
+@media (max-width: 1500px) {
+    
+    .photos_items {
+        width: 90%;
+    }
+
+    .item {
+        height: 550px;
+        width: 300px;
+    }
+    
+    .about_photo img  {
+        width: auto;
+        height: 450px;
+    } 
+
+    .about {
+        flex-direction: column;
+    }
+    
+    body {
+        overflow-x: hidden;
+    }
+}
 
 @media (max-width: 1024px) {
     .hero_content {
@@ -67,17 +91,41 @@
 
     #typewriter-container {
         font-size: 35px;
+        height: 20vh;
     }
 
     .photos_items {
         gap: 5px;
         align-self: center;
+        width: 90%;
     }
 
     .item {
         height: 400px;
         width: 300px;
     }
+
+    .about {
+        height: 75vh;
+    }
+
+    .about_text {
+        margin-top: 100px;
+    }
+
+    .about_photo img  {
+        width: auto;
+        height: 400px;
+    } 
+
+    .about_text h2 {
+        font-size: 40px;
+    }
+
+    .about_text li {
+        font-size: 25px;
+    }
+
 }
 
 @media (max-width: 768px) {
@@ -118,6 +166,19 @@
     .item {
         height: 400px;
         width: 300px;
+    }
+
+    .about_photo img  {
+        width: auto;
+        height: 350px;
+    } 
+
+    .about_text h2 {
+        font-size: 32px;
+    }
+
+    .about_text li {
+        font-size: 20px;
     }
 }
 
@@ -161,6 +222,19 @@
         height: 350px;
         width: 250px;
     }
+
+    .about_photo img  {
+        width: auto;
+        height: 300px;
+    } 
+
+    .about_text h2 {
+        font-size: 28px;
+    }
+
+    .about_text li {
+        font-size: 16px;
+    }
 }
 
 
@@ -203,6 +277,24 @@
         height: 300px;
         width: 200px;
     }
+
+    .about {
+        height: 80vh;
+    }
+
+    .about_photo img  {
+        width: auto;
+        height: 220px;
+    } 
+
+
+    .about_text h2 {
+        font-size: 24px;
+    }
+
+    .about_text li {
+        font-size: 16px;
+    }
 }
 
 @media (max-width: 325px) {
@@ -232,5 +324,18 @@
 
     #typewriter-container {
         font-size: 15px;
+    }
+
+    .about_photo img {
+        width: auto;
+        height: 200px;
+    }
+
+    .about_text h2 {
+        font-size: 20px;
+    }
+
+    .about_text li {
+        font-size: 14px;
     }
 }
