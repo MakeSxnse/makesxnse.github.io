@@ -1,18 +1,19 @@
+// ---------------------------------------------
+// Navbar scroll efekt
 (function() {
   'use strict';
   
   function initNavScrollEffect() {
     window.addEventListener("scroll", () => {
-    const nav = document.querySelector("nav");
-    const threshold = window.innerHeight * 0.0000000000000000001;
-    if (window.scrollY > threshold) {
-      nav.style.boxShadow = "0 0 10px rgb(142, 142, 142)";
-      nav.style.transition = "box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out";
-    } 
-    if (window.scrollY < threshold) {
-      nav.style.boxShadow = "none";
-    }
-});
+      const nav = document.querySelector("nav");
+      const threshold = window.innerHeight * 0.0000000000000000001; // prakticky 0
+      if (window.scrollY > threshold) {
+        nav.style.boxShadow = "0 0 10px rgb(142, 142, 142)";
+        nav.style.transition = "box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out";
+      } else {
+        nav.style.boxShadow = "none";
+      }
+    });
   }
   
   if (document.readyState === 'loading') {
@@ -22,6 +23,9 @@
   }
 })();
 
+
+// ---------------------------------------------
+// Typewriter efekt
 (function() {
   'use strict';
   
@@ -90,3 +94,84 @@
     TypewriterEffect.init();
   }
 })();
+
+
+// ---------------------------------------------
+// Funkce pro vytvoření carouselu
+function createCarousel({
+  carouselSelector,
+  photoSelector,
+  nextBtnSelector,
+  prevBtnSelector,
+  dotsContainerSelector
+}) {
+  const carousel = document.querySelector(carouselSelector);
+  const photos = document.querySelectorAll(photoSelector);
+  const nextBtn = document.querySelector(nextBtnSelector);
+  const prevBtn = document.querySelector(prevBtnSelector);
+  const dotsContainer = document.querySelector(dotsContainerSelector);
+
+  if (!carousel || photos.length === 0 || !nextBtn || !prevBtn || !dotsContainer) {
+    console.warn(`Carousel elements missing for selectors:`, arguments[0]);
+    return;
+  }
+
+  let index = 0;
+
+  // Vytvoření teček dle počtu fotek
+  photos.forEach((_, i) => {
+    const dot = document.createElement('span');
+    dot.addEventListener('click', () => {
+      index = i;
+      updateCarousel();
+    });
+    dotsContainer.appendChild(dot);
+  });
+
+  const dots = dotsContainer.querySelectorAll('span');
+
+  function updateCarousel() {
+    carousel.style.transform = `translateX(-${index * 100}%)`;
+    dots.forEach(dot => dot.classList.remove('active'));
+    if (dots[index]) dots[index].classList.add('active');
+  }
+
+  nextBtn.addEventListener('click', () => {
+    index = (index + 1) % photos.length;
+    updateCarousel();
+  });
+
+  prevBtn.addEventListener('click', () => {
+    index = (index - 1 + photos.length) % photos.length;
+    updateCarousel();
+  });
+
+  // Inicializace carouselu
+  updateCarousel();
+
+  // Automatický posun carouselu každých 6 sekund
+  setInterval(() => {
+    index = (index + 1) % photos.length;
+    updateCarousel();
+  }, 6000);
+}
+
+
+// Spuštění carouselů pro accessories a clothes
+document.addEventListener('DOMContentLoaded', () => {
+  createCarousel({
+    carouselSelector: '.acc_carousel',
+    photoSelector: '.acc_photo',
+    nextBtnSelector: '.acc-carousel-btn.next',
+    prevBtnSelector: '.acc-carousel-btn.prev',
+    dotsContainerSelector: '.acc-carousel-dots'
+  });
+
+  createCarousel({
+    carouselSelector: '.cloth_carousel',
+    photoSelector: '.cloth_photo',
+    nextBtnSelector: '.cloth-carousel-btn.next',
+    prevBtnSelector: '.cloth-carousel-btn.prev',
+    dotsContainerSelector: '.cloth-carousel-dots'
+  });
+});

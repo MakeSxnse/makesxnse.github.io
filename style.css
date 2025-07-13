@@ -101,11 +101,14 @@ nav li a:hover {
 .logo_nav img {
     width: 45px;
     height: 45px;
+    opacity: 0.9;
+    filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.24));
 }
 
 .logo_nav img:hover {
-    opacity: 0.5;
+    opacity: 1;
     transition: 0.5s ease;
+    filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.594));
 }
 
 .nav_instagram a {
@@ -304,7 +307,7 @@ nav li a:hover {
 }
 
 .about_text ul {
-    list-style: upper-alpha;
+    list-style: upper-roman;
 }
 
 .about_photo img {
@@ -317,6 +320,293 @@ nav li a:hover {
     display: flex;
     justify-content: center;
 }
+
+.products {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 60px 20px;
+}
+
+.products h2 {
+  font-family: "Rubik", sans-serif;
+  font-weight: 400;
+  font-size: 40px;
+  margin-bottom: 100px;
+  text-align: center;
+}
+
+.product_card {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 100px;
+  width: 100%;
+  max-width: 1200px;
+  margin-bottom: 250px;
+}
+
+.carousel-wrapper {
+  flex: 1 1 400px;
+  max-width: 500px;
+  overflow: hidden;
+  position: relative;
+}
+
+.accessories_carousel {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  width: 400%;
+}
+
+.photo {
+  flex: 0 0 100%;
+  height: 400px;
+  background-size: cover;
+  background-position: center;
+}
+
+.photo1 { background-color: #3498db; }
+.photo2 { background-color: #2ecc71; }
+.photo3 { background-color: #e74c3c; }
+.photo4 { background-color: #9b59b6; }
+
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.5em;
+  color: rgba(255, 255, 255, 0.74);
+  background: rgba(0, 0, 0, 0.4);
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.carousel-btn:hover {
+    color: white;
+    transition: .2s ease;
+    background-color: rgba(0, 0, 0, 0.511);
+}
+
+.carousel-btn.prev { left: 10px; }
+.carousel-btn.next { right: 10px; }
+
+
+.carousel-dots {
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+  text-align: center;
+  z-index: 10;
+}
+
+.carousel-dots span {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin: 0 5px;
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.carousel-dots span.active {
+  background-color: white;
+}
+
+.accessories_others {
+  flex: 1 1 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  font-family: "Courier Prime", monospace;
+}
+
+.accessories_others h3 {
+  font-family: "Rubik", sans-serif;
+  font-size: 36px;
+  font-weight: 500;
+  text-transform: lowercase;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+  margin: 0;
+  margin-bottom: 20px;
+}
+
+.accessories_others h4 {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.accessories_others select {
+  padding: 10px;
+  background-color: #eee;
+  border: none;
+  font-size: 14px;
+  font-family: "Courier Prime", monospace;
+  max-width: 400px;
+}
+
+.accessories_others p {
+  font-size: 14px;
+  max-width: 300px;
+  line-height: 1.5;
+  margin: 0;
+  margin: 10px 0 10px 5px;
+}
+
+.add_to_cart {
+  background-color: black;
+  color: white;
+  font-family: "Courier Prime", monospace;
+  font-size: 16px;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  width: fit-content;
+  transition: background-color 0.3s ease;
+}
+
+.add_to_cart:hover {
+  background-color: #222;
+}
+
+/* --- Carousel 1 (accessories) --- */
+.acc_carousel {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  width: 400%;
+}
+
+.acc_photo {
+  flex: 0 0 100%;
+  height: 400px;
+  background-size: cover;
+  background-position: center;
+}
+
+.acc_photo1 { background-color: #3498db; }
+.acc_photo2 { background-color: #2ecc71; }
+.acc_photo3 { background-color: #e74c3c; }
+.acc_photo4 { background-color: #9b59b6; }
+
+.acc-carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.5em;
+  color: rgba(255, 255, 255, 0.74);
+  background: rgba(0, 0, 0, 0.4);
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.acc-carousel-btn:hover {
+  color: white;
+  transition: .2s ease;
+  background-color: rgba(0, 0, 0, 0.511);
+}
+
+.acc-carousel-btn.prev { left: 10px; }
+.acc-carousel-btn.next { right: 10px; }
+
+.acc-carousel-dots {
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+  text-align: center;
+  z-index: 10;
+}
+
+.acc-carousel-dots span {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin: 0 5px;
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.acc-carousel-dots span.active {
+  background-color: white;
+}
+
+
+/* --- Carousel 2 (clothes) --- */
+.cloth_carousel {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  width: 400%;
+}
+
+.cloth_photo {
+  flex: 0 0 100%;
+  height: 400px;
+  background-size: cover;
+  background-position: center;
+}
+
+.cloth_photo1 { background-color: #3498db; }
+.cloth_photo2 { background-color: #2ecc71; }
+.cloth_photo3 { background-color: #e74c3c; }
+.cloth_photo4 { background-color: #9b59b6; }
+
+.cloth-carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.5em;
+  color: rgba(255, 255, 255, 0.74);
+  background: rgba(0, 0, 0, 0.4);
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.cloth-carousel-btn:hover {
+  color: white;
+  transition: .2s ease;
+  background-color: rgba(0, 0, 0, 0.511);
+}
+
+.cloth-carousel-btn.prev { left: 10px; }
+.cloth-carousel-btn.next { right: 10px; }
+
+.cloth-carousel-dots {
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+  text-align: center;
+  z-index: 10;
+}
+
+.cloth-carousel-dots span {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin: 0 5px;
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.cloth-carousel-dots span.active {
+  background-color: white;
+}
+
+
+
 
 ::-webkit-scrollbar {
   width: 12px;             

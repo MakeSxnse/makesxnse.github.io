@@ -82,20 +82,88 @@
     <div class="products">
       <h2>PRODUCTS</h2>
 
-      <div class="accessories">
-        <div class="accessories_carousel">
-          <div class="photo photo1"></div>
-          <div class="photo photo2"></div>
-          <div class="photo photo3"></div>
-          <div class="photo photo4"></div>
+      <!-- PRODUCT 1: ACCESORIES -->
+      <div class="product_card">
+        <div class="carousel-wrapper">
+          <div class="acc_carousel">
+            <div class="acc_photo acc_photo1"></div>
+            <div class="acc_photo acc_photo2"></div>
+            <div class="acc_photo acc_photo3"></div>
+            <div class="acc_photo acc_photo4"></div>
+          </div>
+
+          <button class="acc-carousel-btn prev">&#10094;</button>
+          <button class="acc-carousel-btn next">&#10095;</button>
+
+          <div class="acc-carousel-dots"></div>
         </div>
 
         <div class="accessories_others">
-          <h3>Naše pásky</h3>
-          <h4>Cena: ---</h4>
+          <h3>naše pásky</h3>
+          <h4><strong>Cena:</strong> --- Kč</h4>
+
+          <select>
+            <option disabled selected hidden>Vyberte velikost</option>
+            <option>S</option>
+            <option>M</option>
+            <option>L</option>
+          </select>
+
+          <select>
+            <option disabled selected hidden>Vyberte variantu</option>
+            <option>Černá</option>
+            <option>Bílá</option>
+            <option>Speciál</option>
+          </select>
+
+          <p>Pásky, co vydrží všechno!</p>
+
+          <button class="add_to_cart">Přidat do košíku</button>
         </div>
       </div>
+
+  <!-- PRODUCT 2: CLOTHES -->
+  <div class="product_card">
+    <div class="carousel-wrapper">
+      <div class="cloth_carousel">
+        <div class="cloth_photo cloth_photo1"></div>
+        <div class="cloth_photo cloth_photo2"></div>
+        <div class="cloth_photo cloth_photo3"></div>
+        <div class="cloth_photo cloth_photo4"></div>
+      </div>
+
+      <button class="cloth-carousel-btn prev">&#10094;</button>
+      <button class="cloth-carousel-btn next">&#10095;</button>
+
+      <div class="cloth-carousel-dots"></div>
     </div>
+
+    <div class="accessories_others">
+      <h3>naše oblečení</h3>
+      <h4><strong>Cena:</strong> --- Kč</h4>
+
+      <select>
+        <option disabled selected hidden>Vyberte velikost</option>
+        <option>S</option>
+        <option>M</option>
+        <option>L</option>
+      </select>
+
+      <select>
+        <option disabled selected hidden>Vyberte variantu</option>
+        <option>Černá</option>
+        <option>Bílá</option>
+        <option>Speciál</option>
+      </select>
+
+      <p>S naším oblečením neuděláte chybu!</p>
+
+      <button class="add_to_cart">Přidat do košíku</button>
+    </div>
+  </div>
+</div>
+
+
 
     <script src="scripts/script.js"></script>
   </body>
