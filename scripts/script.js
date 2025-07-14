@@ -6,7 +6,8 @@
   function initNavScrollEffect() {
     window.addEventListener("scroll", () => {
       const nav = document.querySelector("nav");
-      const threshold = window.innerHeight * 0.0000000000000000001; // prakticky 0
+      const threshold = 0; // prakticky 0
+      
       if (window.scrollY > threshold) {
         nav.style.boxShadow = "0 0 10px rgb(142, 142, 142)";
         nav.style.transition = "box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out";
@@ -22,7 +23,6 @@
     initNavScrollEffect();
   }
 })();
-
 
 // ---------------------------------------------
 // Typewriter efekt
@@ -95,7 +95,6 @@
   }
 })();
 
-
 // ---------------------------------------------
 // Funkce pro vytvoření carouselu
 function createCarousel({
@@ -156,7 +155,6 @@ function createCarousel({
   }, 6000);
 }
 
-
 // Spuštění carouselů pro accessories a clothes
 document.addEventListener('DOMContentLoaded', () => {
   createCarousel({
@@ -174,4 +172,83 @@ document.addEventListener('DOMContentLoaded', () => {
     prevBtnSelector: '.cloth-carousel-btn.prev',
     dotsContainerSelector: '.cloth-carousel-dots'
   });
+
+  initAddToCartButtons();
+  setupCartVisibilityOnScroll();
 });
+
+// ---------------------------------------------
+// Nákupní košík
+let cartCount = 0;
+
+function addToCart(size, variant) {
+  cartCount++;
+  updateCartCounter();
+}
+
+function updateCartCounter() {
+  const counter = document.getElementById('cartCounter');
+  if (!counter) return;
+  
+  let text = '';
+  if (cartCount === 1) {
+    text = '1 položka';
+  } else if (cartCount >= 2 && cartCount <= 4) {
+    text = `${cartCount} položky`;
+  } else {
+    text = `${cartCount} položek`;
+  }
+  
+  counter.textContent = text;
+}
+
+function initAddToCartButtons() {
+  const buttons = document.querySelectorAll('.add_to_cart');
+
+  buttons.forEach(button => {
+    button.addEventListener('click', () => {
+      const container = button.closest('.accessories_others');
+      if (!container) return;
+
+      const selects = container.querySelectorAll('select');
+      const sizeSelect = selects[0];
+      const variantSelect = selects[1];
+
+      // Kontrola vybraných hodnot
+      if (!sizeSelect.value) {
+        alert('Prosím, vyberte velikost.');
+        return;
+      }
+      if (!variantSelect.value) {
+        alert('Prosím, vyberte variantu.');
+        return;
+      }
+
+      addToCart(sizeSelect.value, variantSelect.value);
+
+      alert(`Přidáno do košíku: Velikost ${sizeSelect.value}, Varianta ${variantSelect.value}`);
+    });
+  });
+}
+
+// ---------------------------------------------
+// Zobrazení košíku po scrollu (120vh) s fade efektem
+function setupCartVisibilityOnScroll() {
+  const cart = document.getElementById('cart');
+  if (!cart) return;
+
+  // Inicialně skrytý košík (CSS by měl mít opacity:0 a pointer-events:none)
+  function checkScroll() {
+    const scrollY = window.scrollY || window.pageYOffset;
+    const limit = window.innerHeight * 1.2; // 120vh
+
+    if (scrollY > limit) {
+      cart.classList.add('visible');
+    } else {
+      cart.classList.remove('visible');
+    }
+  }
+
+  window.addEventListener('scroll', checkScroll);
+  checkScroll(); // hned při načtení
+}
