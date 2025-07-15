@@ -94,7 +94,7 @@ nav li a {
 }
 
 nav li a:hover {
-    color: #1d1d1d9a;
+    color: #222;
     transition: 0.3s ease-in-out;
 }
 
@@ -119,8 +119,8 @@ nav li a:hover {
 }
 
 .nav_instagram a:hover {
-    background-color: #00000088;
-    color: #000;
+    background-color: #222;
+    color: #fff;
     transition: 0.3s ease-in-out;
 }
 
@@ -280,7 +280,7 @@ nav li a:hover {
     gap: 20px;
     align-items: center;
     justify-content: space-between;
-    margin: 150px 0 100px 0;
+    margin-bottom: 200px;
 }
 
 .about_text {
@@ -477,7 +477,6 @@ nav li a:hover {
   background-color: #222;
 }
 
-/* --- Carousel 1 (accessories) --- */
 .acc_carousel {
   display: flex;
   transition: transform 0.5s ease-in-out;
@@ -542,7 +541,6 @@ nav li a:hover {
 }
 
 
-/* --- Carousel 2 (clothes) --- */
 .cloth_carousel {
   display: flex;
   transition: transform 0.5s ease-in-out;
@@ -619,6 +617,7 @@ nav li a:hover {
   cursor: pointer;
   box-shadow: 0 2px 100px rgba(0, 0, 0, 0.055);
   position: fixed;
+  z-index: 999;
   top: 90%;
   right: 5px;
   transform: translate(0, -50%);
@@ -674,6 +673,7 @@ nav li a:hover {
   pointer-events: auto;
 }
 
+/* konec */
 
 
 ::-webkit-scrollbar {

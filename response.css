@@ -1,3 +1,7 @@
+body {
+    overflow-x: hidden;
+}
+
 @media (max-width: 1024px) {
 
     nav {
@@ -17,7 +21,8 @@
     nav ul > .links > div {
         padding: 40px 20px;
         flex-direction: column;
-        background-color: #f5f5f5;
+        background-color: #f5f5f5e1;
+        backdrop-filter: blur(10px);
     }
 
     nav ul > .hamburger {
@@ -62,6 +67,11 @@
     body {
         overflow-x: hidden;
     }
+
+    .about {
+        height: 80vh;
+    }
+
 }
 
 @media (max-width: 1024px) {
@@ -106,8 +116,8 @@
     }
 
     .about {
-        height: 75vh;
-    }
+        height: 80vh;
+        }
 
     .about_text {
         margin-top: 100px;
@@ -126,6 +136,16 @@
         font-size: 25px;
     }
 
+    .about {
+        height: 100vh;
+    }
+
+}
+
+@media (max-width: 840px) {
+    .accessories_others {
+        margin-left: 200px;
+    }
 }
 
 @media (max-width: 768px) {
@@ -179,6 +199,20 @@
 
     .about_text li {
         font-size: 20px;
+    }
+
+    .products {
+        margin-top: 70px;
+    }
+
+    .about {
+        height: 90vh;
+        margin-bottom: 100px;
+    }
+
+    .accessories_others {
+        align-items: center;
+        margin: 0;
     }
 }
 
@@ -235,6 +269,14 @@
     .about_text li {
         font-size: 16px;
     }
+
+    .about {
+        height: 90vh;
+    }
+
+    .products {
+        margin-top: 40px;
+    }
 }
 
 
@@ -279,14 +321,14 @@
     }
 
     .about {
-        height: 80vh;
+        height: 90vh;
+        margin: 0;
     }
 
     .about_photo img  {
         width: auto;
         height: 220px;
     } 
-
 
     .about_text h2 {
         font-size: 24px;
@@ -337,5 +379,9 @@
 
     .about_text li {
         font-size: 14px;
+    }
+
+    .products {
+        margin-top: 50px;
     }
 }
