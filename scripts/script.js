@@ -180,12 +180,16 @@ document.addEventListener('DOMContentLoaded', () => {
 // ---------------------------------------------
 // Nákupní košík
 let cartCount = 0;
-
 function addToCart(size, variant) {
   cartCount++;
   updateCartCounter();
-}
 
+  const cartIcon = document.querySelector(".cart_icon")
+  cartIcon.classList.add("animate")
+  cartIcon.addEventListener("animationend", ()=>{
+    cartIcon.classList.remove("animate")
+  }, {once: true})
+}
 function updateCartCounter() {
   const counter = document.getElementById('cartCounter');
   if (!counter) return;
@@ -201,34 +205,18 @@ function updateCartCounter() {
   
   counter.textContent = text;
 }
-
 function initAddToCartButtons() {
-  const buttons = document.querySelectorAll('.add_to_cart');
-
-  buttons.forEach(button => {
-    button.addEventListener('click', () => {
-      const container = button.closest('.accessories_others');
-      if (!container) return;
-
-      const selects = container.querySelectorAll('select');
+  const Forms = document.querySelectorAll(".accessories_others");
+  Forms.forEach(e=>{
+    e.addEventListener("submit", function(e) {
+      e.preventDefault();
+      const selects = document.querySelectorAll('.select');
       const sizeSelect = selects[0];
       const variantSelect = selects[1];
 
-      // Kontrola vybraných hodnot
-      if (!sizeSelect.value) {
-        alert('Prosím, vyberte velikost.');
-        return;
-      }
-      if (!variantSelect.value) {
-        alert('Prosím, vyberte variantu.');
-        return;
-      }
-
       addToCart(sizeSelect.value, variantSelect.value);
-
-      alert(`Přidáno do košíku: Velikost ${sizeSelect.value}, Varianta ${variantSelect.value}`);
-    });
-  });
+    })
+  })
 }
 
 // ---------------------------------------------
