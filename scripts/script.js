@@ -181,12 +181,11 @@ document.addEventListener('DOMContentLoaded', () => {
 // Nákupní košík
 let cartCount = 0;
 function addToCart(size, variant) {
-  cartCount++;
-  updateCartCounter();
-
   const cartIcon = document.querySelector(".cart_icon")
   cartIcon.classList.add("animate")
   cartIcon.addEventListener("animationend", ()=>{
+    cartCount++;
+    updateCartCounter();
     cartIcon.classList.remove("animate")
   }, {once: true})
 }
