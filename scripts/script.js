@@ -218,18 +218,21 @@ function initAddToCartButtons() {
   })
 }
 
-// ---------------------------------------------
-// Zobrazení košíku po scrollu (120vh) s fade efektem
 function setupCartVisibilityOnScroll() {
   const cart = document.getElementById('cart');
-  if (!cart) return;
+  const footer = document.querySelector('footer');
+  if (!cart || !footer) return;
 
-  // Inicialně skrytý košík (CSS by měl mít opacity:0 a pointer-events:none)
   function checkScroll() {
     const scrollY = window.scrollY || window.pageYOffset;
-    const limit = window.innerHeight * 1.2; // 120vh
+    const windowHeight = window.innerHeight;
+    const limit = windowHeight * 1.2; // 120vh
 
-    if (scrollY > limit) {
+    const footerTop = footer.getBoundingClientRect().top + scrollY;
+
+    const distanceToBottom = (scrollY + windowHeight) - footerTop;
+
+    if (scrollY > limit && distanceToBottom < -50) {
       cart.classList.add('visible');
     } else {
       cart.classList.remove('visible');
@@ -237,5 +240,5 @@ function setupCartVisibilityOnScroll() {
   }
 
   window.addEventListener('scroll', checkScroll);
-  checkScroll(); // hned při načtení
+  checkScroll();
 }
