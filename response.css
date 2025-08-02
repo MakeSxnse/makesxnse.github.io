@@ -56,23 +56,9 @@ body {
         width: 300px;
     }
     
-    .about_photo img  {
-        width: auto;
-        height: 450px;
-    } 
-
-    .about {
-        flex-direction: column;
-    }
-    
     body {
         overflow-x: hidden;
     }
-
-    .about {
-        height: 80vh;
-    }
-
 }
 
 @media (max-width: 1024px) {
@@ -116,33 +102,16 @@ body {
         width: 300px;
     }
 
-    .about {
-        height: 80vh;
-        }
-
-    .about_text {
-        margin-top: 100px;
-    }
-
-    .about_photo img  {
-        width: auto;
-        height: 400px;
-    } 
-
-    .about_text h2 {
-        font-size: 40px;
-    }
-
-    .about_text li {
-        font-size: 25px;
-    }
-
-    .about {
-        height: 100vh;
-    }
-
     .products h2 {
         font-size: 40px;
+    }
+
+        .about {
+        flex-direction: column;
+    }
+
+    .about_photo {
+        width: 80%;
     }
 
 }
@@ -150,11 +119,6 @@ body {
 @media (max-width: 840px) {
     .accessories_others {
         margin-left: 200px;
-    }
-
-    .about_photo img {
-        width: auto;
-        height: 400px;
     }
 }
 
@@ -196,25 +160,6 @@ body {
     .item {
         height: 400px;
         width: 300px;
-    }
-
-    .about_photo img  {
-        width: auto;
-        height: 330px;
-    } 
-
-    .about_text h2 {
-        font-size: 32px;
-    }
-
-    .about_text li {
-        font-size: 20px;
-    }
-
-
-    .about {
-        height: 90vh;
-        margin-bottom: 100px;
     }
 
     .accessories_others {
@@ -268,23 +213,6 @@ body {
         width: 250px;
     }
 
-    .about_photo img  {
-        width: auto;
-        height: 300px;
-    } 
-
-    .about_text h2 {
-        font-size: 28px;
-    }
-
-    .about_text li {
-        font-size: 16px;
-    }
-
-    .about {
-        height: 90vh;
-    }
-
     .products {
         margin-top: 40px;
     }
@@ -335,24 +263,6 @@ body {
         width: 200px;
     }
 
-    .about {
-        height: 90vh;
-        margin: 0;
-    }
-
-    .about_photo img  {
-        width: auto;
-        height: 220px;
-    } 
-
-    .about_text h2 {
-        font-size: 24px;
-    }
-
-    .about_text li {
-        font-size: 16px;
-    }
-
     .products h2 {
         font-size: 24px;
     }
@@ -385,19 +295,6 @@ body {
 
     #typewriter-container {
         font-size: 15px;
-    }
-
-    .about_photo img {
-        width: auto;
-        height: 200px;
-    }
-
-    .about_text h2 {
-        font-size: 20px;
-    }
-
-    .about_text li {
-        font-size: 14px;
     }
 
     .products {
