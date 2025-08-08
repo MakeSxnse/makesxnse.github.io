@@ -156,7 +156,7 @@ function createCarousel({
 }
 
 // Spuštění carouselů pro accessories a clothes
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', function() {
   createCarousel({
     carouselSelector: '.acc_carousel',
     photoSelector: '.acc_photo',
@@ -180,19 +180,16 @@ document.addEventListener('DOMContentLoaded', () => {
 // ---------------------------------------------
 // Nákupní košík
 let cartCount = 0;
+
 function addToCart(size, variant) {
   const cartIcon = document.querySelector(".cart_icon")
   cartIcon.classList.add("animate")
   cartIcon.addEventListener("animationend", ()=>{
-    cartCount++;
-    updateCartCounter();
     cartIcon.classList.remove("animate")
   }, {once: true})
 }
 function updateCartCounter() {
   const counter = document.getElementById('cartCounter');
-  if (!counter) return;
-  
   let text = '';
   if (cartCount === 1) {
     text = '1 položka';
@@ -201,17 +198,18 @@ function updateCartCounter() {
   } else {
     text = `${cartCount} položek`;
   }
-  
   counter.textContent = text;
 }
 function initAddToCartButtons() {
-  const Forms = document.querySelectorAll(".accessories_others");
-  Forms.forEach(e=>{
-    e.addEventListener("submit", function(e) {
+  const forms = document.querySelectorAll(".accessories_others");
+  forms.forEach(form=>{
+    form.addEventListener("submit", function(e) {
       e.preventDefault();
-      const selects = document.querySelectorAll('.select');
+      cartCount++
+      const selects = form.querySelectorAll('.select');
       const sizeSelect = selects[0];
       const variantSelect = selects[1];
+      updateCartCounter()
 
       addToCart(sizeSelect.value, variantSelect.value);
     })
@@ -232,7 +230,7 @@ function setupCartVisibilityOnScroll() {
 
     const distanceToBottom = (scrollY + windowHeight) - footerTop;
 
-    if (scrollY > limit && distanceToBottom < -50) {
+    if (scrollY > limit) {
       cart.classList.add('visible');
     } else {
       cart.classList.remove('visible');
@@ -242,3 +240,6 @@ function setupCartVisibilityOnScroll() {
   window.addEventListener('scroll', checkScroll);
   checkScroll();
 }
+
+
+// && distanceToBottom < -50

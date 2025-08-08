@@ -295,6 +295,7 @@ nav li a:hover {
 .about_text p {
   width: 70%;
   font-size: 20px;
+  position: relative;
 }
 
 .about_text h2 {
@@ -305,17 +306,20 @@ nav li a:hover {
   text-decoration: underline;
   text-decoration-thickness: 2px;
   text-underline-offset: 4px;
+  position: relative;
 }
 
 .about_photo {
   flex: 1;
-  width: 45%
+  width: 45%;
+  z-index: 1;
 
 }
 
 .about_photo img {
   width: 100%;
   height: auto;
+  z-index: 1;
 }
 
 .products {
@@ -331,6 +335,8 @@ nav li a:hover {
   font-size: 40px;
   margin-bottom: 120px;
   text-align: center;
+  position: relative;
+  z-index: 1;
 }
 
 .product_card {
@@ -455,6 +461,7 @@ nav li a:hover {
   line-height: 1.5;
   margin: 0;
   margin: 10px 0 10px 5px;
+  text-align: center;
 }
 
 .add_to_cart {
@@ -848,6 +855,59 @@ footer {
   background-color: #555;
 }
 
+@media (max-width: 600px) {
+  .about {
+    flex-direction: column;
+    height: auto;
+    padding: 20px;
+    gap: 20px;
+  }
+
+  .about_text, .about_photo {
+    width: 100%;
+  }
+
+  .about_text h2,
+  .products h2 {
+    font-size: 24px;
+    text-align: center;
+    word-break: break-word;
+  }
+
+  .about_text p {
+    width: 90%;
+    font-size: 16px;
+  }
+
+  .products h2 {
+    margin-bottom: 60px; /* zmenšeno z 120px */
+  }
+
+  .product_card {
+    flex-direction: column;
+    gap: 40px;
+    margin-bottom: 150px;
+  }
+
+  .accessories_others h3 {
+    font-size: 24px;
+    text-align: center;
+  }
+
+  .accessories_others h4 {
+    font-size: 18px;
+    text-align: center;
+  }
+
+  .accessories_others select {
+    width: 90%;
+  }
+
+  .add_to_cart {
+    width: 100%;
+    text-align: center;
+  }
+}
 
 
 
