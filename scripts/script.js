@@ -143,6 +143,7 @@ function createCarousel({
   }, 6000);
 }
 
+// Spuštění carouselů pro accessories a clothes
 document.addEventListener('DOMContentLoaded', () => {
   createCarousel({
     carouselSelector: '.acc_carousel',
@@ -166,26 +167,23 @@ document.addEventListener('DOMContentLoaded', () => {
   updateCartCounter();
 });
 
-let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-
+// ---------------------------------------------
+// Nákupní košík
+let cartCount = 0;
 function addToCart(size, variant) {
-  const item = { size, variant };
-  cartItems.push(item);
-  localStorage.setItem('cartItems', JSON.stringify(cartItems));
-
-  const cartIcon = document.querySelector(".cart_icon");
-  cartIcon.classList.add("animate");
-  cartIcon.addEventListener("animationend", () => {
+  const cartIcon = document.querySelector(".cart_icon")
+  cartIcon.classList.add("animate")
+  cartIcon.addEventListener("animationend", ()=>{
+    cartCount++;
     updateCartCounter();
-    cartIcon.classList.remove("animate");
-  }, { once: true });
+    cartIcon.classList.remove("animate")
+  }, {once: true})
 }
 
 function updateCartCounter() {
   const counter = document.getElementById('cartCounter');
   if (!counter) return;
-
-  const count = cartItems.length;
+  
   let text = '';
 
   if (count === 1) {
@@ -195,20 +193,18 @@ function updateCartCounter() {
   } else {
     text = `${count} položek`;
   }
-
+  
   counter.textContent = text;
 }
 
 function initAddToCartButtons() {
-  const forms = document.querySelectorAll(".accessories_others");
-  forms.forEach(form => {
-    form.addEventListener("submit", function (e) {
+  const Forms = document.querySelectorAll(".accessories_others");
+  Forms.forEach(e=>{
+    e.addEventListener("submit", function(e) {
       e.preventDefault();
-      const selects = form.querySelectorAll('.select');
+      const selects = document.querySelectorAll('.select');
       const sizeSelect = selects[0];
       const variantSelect = selects[1];
-
-      if (!sizeSelect.value || !variantSelect.value) return;
 
       addToCart(sizeSelect.value, variantSelect.value);
     });
@@ -227,7 +223,7 @@ function setupCartVisibilityOnScroll() {
     const footerTop = footer.getBoundingClientRect().top + scrollY;
     const distanceToBottom = (scrollY + windowHeight) - footerTop;
 
-    if (scrollY > limit && distanceToBottom < -50) {
+    if (scrollY > limit) {
       cart.classList.add('visible');
     } else {
       cart.classList.remove('visible');
@@ -270,3 +266,6 @@ function clearCart() {
   renderCartItems();
   updateCartCounter();
 }
+
+
+// && distanceToBottom < -50
