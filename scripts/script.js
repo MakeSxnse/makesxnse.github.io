@@ -1,22 +1,19 @@
-// ---------------------------------------------
-// Navbar scroll efekt
-(function() {
+(function () {
   'use strict';
-  
+
   function initNavScrollEffect() {
     window.addEventListener("scroll", () => {
       const nav = document.querySelector("nav");
-      const threshold = 0; // prakticky 0
-      
+      const threshold = 0;
       if (window.scrollY > threshold) {
-        nav.style.boxShadow = "0 0 10px rgb(142, 142, 142)";
+        nav.style.boxShadow = "0 0 15px rgba(0, 0, 0, 0.23)";
         nav.style.transition = "box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out";
       } else {
         nav.style.boxShadow = "none";
       }
     });
   }
-  
+
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initNavScrollEffect);
   } else {
@@ -24,11 +21,9 @@
   }
 })();
 
-// ---------------------------------------------
-// Typewriter efekt
-(function() {
+(function () {
   'use strict';
-  
+
   const TypewriterEffect = {
     text: "Pro ty, kdo jdou za svými cíli",
     speed: 100,
@@ -37,28 +32,28 @@
     deleting: false,
     timeoutId: null,
     container: null,
-    
-    init: function() {
+
+    init: function () {
       this.container = document.getElementById("typewriter");
       if (!this.container) return;
       this.animate();
     },
-    
-    animate: function() {
+
+    animate: function () {
       if (!this.deleting && this.index <= this.text.length) {
         if (this.index === 0) {
           this.container.textContent = "";
         }
-        
+
         if (this.index > 0) {
           const span = document.createElement('span');
           span.textContent = this.text.charAt(this.index - 1);
           span.classList.add('fade-in');
           this.container.appendChild(span);
         }
-        
+
         this.index++;
-        
+
         if (this.index > this.text.length) {
           this.timeoutId = setTimeout(() => {
             this.deleting = true;
@@ -71,16 +66,15 @@
           this.container.removeChild(this.container.lastChild);
         }
         this.index--;
-        
         if (this.index < 0) {
           this.deleting = false;
         }
       }
-      
+
       this.timeoutId = setTimeout(() => this.animate(), this.speed);
     },
-    
-    destroy: function() {
+
+    destroy: function () {
       if (this.timeoutId) {
         clearTimeout(this.timeoutId);
         this.timeoutId = null;
@@ -95,8 +89,6 @@
   }
 })();
 
-// ---------------------------------------------
-// Funkce pro vytvoření carouselu
 function createCarousel({
   carouselSelector,
   photoSelector,
@@ -111,13 +103,11 @@ function createCarousel({
   const dotsContainer = document.querySelector(dotsContainerSelector);
 
   if (!carousel || photos.length === 0 || !nextBtn || !prevBtn || !dotsContainer) {
-    console.warn(`Carousel elements missing for selectors:`, arguments[0]);
     return;
   }
 
   let index = 0;
 
-  // Vytvoření teček dle počtu fotek
   photos.forEach((_, i) => {
     const dot = document.createElement('span');
     dot.addEventListener('click', () => {
@@ -145,17 +135,14 @@ function createCarousel({
     updateCarousel();
   });
 
-  // Inicializace carouselu
   updateCarousel();
 
-  // Automatický posun carouselu každých 6 sekund
   setInterval(() => {
     index = (index + 1) % photos.length;
     updateCarousel();
   }, 6000);
 }
 
-// Spuštění carouselů pro accessories a clothes
 document.addEventListener('DOMContentLoaded', () => {
   createCarousel({
     carouselSelector: '.acc_carousel',
@@ -175,47 +162,57 @@ document.addEventListener('DOMContentLoaded', () => {
 
   initAddToCartButtons();
   setupCartVisibilityOnScroll();
+  renderCartItems();
+  updateCartCounter();
 });
 
-// ---------------------------------------------
-// Nákupní košík
-let cartCount = 0;
+let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+
 function addToCart(size, variant) {
-  const cartIcon = document.querySelector(".cart_icon")
-  cartIcon.classList.add("animate")
-  cartIcon.addEventListener("animationend", ()=>{
-    cartCount++;
+  const item = { size, variant };
+  cartItems.push(item);
+  localStorage.setItem('cartItems', JSON.stringify(cartItems));
+
+  const cartIcon = document.querySelector(".cart_icon");
+  cartIcon.classList.add("animate");
+  cartIcon.addEventListener("animationend", () => {
     updateCartCounter();
-    cartIcon.classList.remove("animate")
-  }, {once: true})
+    cartIcon.classList.remove("animate");
+  }, { once: true });
 }
+
 function updateCartCounter() {
   const counter = document.getElementById('cartCounter');
   if (!counter) return;
-  
+
+  const count = cartItems.length;
   let text = '';
-  if (cartCount === 1) {
+
+  if (count === 1) {
     text = '1 položka';
-  } else if (cartCount >= 2 && cartCount <= 4) {
-    text = `${cartCount} položky`;
+  } else if (count >= 2 && count <= 4) {
+    text = `${count} položky`;
   } else {
-    text = `${cartCount} položek`;
+    text = `${count} položek`;
   }
-  
+
   counter.textContent = text;
 }
+
 function initAddToCartButtons() {
-  const Forms = document.querySelectorAll(".accessories_others");
-  Forms.forEach(e=>{
-    e.addEventListener("submit", function(e) {
+  const forms = document.querySelectorAll(".accessories_others");
+  forms.forEach(form => {
+    form.addEventListener("submit", function (e) {
       e.preventDefault();
-      const selects = document.querySelectorAll('.select');
+      const selects = form.querySelectorAll('.select');
       const sizeSelect = selects[0];
       const variantSelect = selects[1];
 
+      if (!sizeSelect.value || !variantSelect.value) return;
+
       addToCart(sizeSelect.value, variantSelect.value);
-    })
-  })
+    });
+  });
 }
 
 function setupCartVisibilityOnScroll() {
@@ -226,10 +223,8 @@ function setupCartVisibilityOnScroll() {
   function checkScroll() {
     const scrollY = window.scrollY || window.pageYOffset;
     const windowHeight = window.innerHeight;
-    const limit = windowHeight * 1.2; // 120vh
-
+    const limit = windowHeight * 1.2;
     const footerTop = footer.getBoundingClientRect().top + scrollY;
-
     const distanceToBottom = (scrollY + windowHeight) - footerTop;
 
     if (scrollY > limit && distanceToBottom < -50) {
@@ -241,4 +236,37 @@ function setupCartVisibilityOnScroll() {
 
   window.addEventListener('scroll', checkScroll);
   checkScroll();
+}
+
+function renderCartItems() {
+  const cartContainer = document.querySelector('.kosik_items');
+  if (!cartContainer) return;
+
+  const items = JSON.parse(localStorage.getItem('cartItems')) || [];
+
+  if (items.length === 0) {
+    cartContainer.innerHTML = '<p>Košík je prázdný.</p>';
+    return;
+  }
+
+  cartContainer.innerHTML = '';
+
+  items.forEach((item, index) => {
+    const div = document.createElement('div');
+    div.classList.add('kosik_item');
+    div.innerHTML = `
+      <p><strong>Položka ${index + 1}:</strong></p>
+      <p>Velikost: ${item.size}</p>
+      <p>Varianta: ${item.variant}</p>
+      <hr>
+    `;
+    cartContainer.appendChild(div);
+  });
+}
+
+function clearCart() {
+  localStorage.removeItem('cartItems');
+  cartItems = [];
+  renderCartItems();
+  updateCartCounter();
 }

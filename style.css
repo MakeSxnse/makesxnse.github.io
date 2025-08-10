@@ -109,7 +109,8 @@ nav li a:hover {
 .logo_nav img:hover {
     opacity: 1;
     transition: 0.5s ease;
-    filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.594));
+    filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.484));
+    scale: 1.02;
 }
 
 .nav_instagram a {
@@ -358,7 +359,7 @@ nav li a:hover {
 }
 
 .photo {
-  flex: 0 0 100%;
+  flex: 1;
   height: 400px;
   background-size: cover;
   background-position: center;
@@ -670,7 +671,7 @@ nav li a:hover {
 }
 
 footer {
-  height: 300px;
+  height: 30vh;
   width: 100%;
   background-color: #e6e6e6;
   display: flex;
@@ -743,7 +744,7 @@ footer {
 }
 
 .Btn:hover .BG {
-  transform: rotate(35deg);
+  transform: rotate(15deg);
   transform-origin: bottom;
 }
 
@@ -794,7 +795,7 @@ footer {
 }
 
 .social-link:hover .background-accent {
-  transform: rotate(35deg);
+  transform: rotate(15deg);
   transform-origin: bottom;
 }
 
@@ -802,7 +803,6 @@ footer {
   background-color: rgba(156, 156, 156, 0.466);
   backdrop-filter: blur(4px);
 }
-
 
 .footer_right {
   display: flex;

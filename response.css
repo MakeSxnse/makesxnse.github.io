@@ -42,6 +42,14 @@ body {
         border: none;
         background: none;
     }
+
+    .about_text p {
+        font-size: 18px;
+    }
+
+    .about_text h2 {
+        font-size: 37px;
+    }
 } 
 
 
@@ -106,7 +114,7 @@ body {
         font-size: 40px;
     }
 
-        .about {
+    .about {
         flex-direction: column;
     }
 
@@ -120,6 +128,7 @@ body {
     .accessories_others {
         margin-left: 200px;
     }
+
 }
 
 @media (max-width: 768px) {
@@ -169,6 +178,14 @@ body {
 
     .products h2 {
         font-size: 32px;
+    }
+
+    .about_text p {
+        font-size: 16px;
+    }
+
+    .about_text h2 {
+        font-size: 35px;
     }
 }
 
