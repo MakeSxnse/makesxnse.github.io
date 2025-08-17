@@ -239,6 +239,61 @@ body {
     }
 }
 
+@media (max-width: 600px) {
+  .about {
+    flex-direction: column;
+    height: auto;
+    padding: 20px;
+    gap: 20px;
+  }
+
+  .about_text, .about_photo {
+    width: 100%;
+  }
+
+  .about_text h2,
+  .products h2 {
+    font-size: 24px;
+    text-align: center;
+    word-break: break-word;
+  }
+
+  .about_text p {
+    width: 90%;
+    font-size: 16px;
+  }
+
+  .products h2 {
+    margin-bottom: 60px; /* zmenšeno z 120px */
+  }
+
+  .product_card {
+    flex-direction: column;
+    gap: 40px;
+    margin-bottom: 150px;
+  }
+
+  .accessories_others h3 {
+    font-size: 24px;
+    text-align: center;
+  }
+
+  .accessories_others h4 {
+    font-size: 18px;
+    text-align: center;
+  }
+
+  .accessories_others select {
+    width: 90%;
+  }
+
+  .add_to_cart {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+
 
 @media (max-width: 475px) {
     .hero_content {

@@ -1,0 +1,165 @@
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 250px;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #f5f5f5;
+    font-family: "Courier Prime", monospace;
+    overflow-x: hidden;
+    z-index: 998;
+    user-select: none;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  position: fixed;
+  width: 100%;
+  height: 70px;
+  z-index: 999;
+  background-color: #f5f5f5; 
+  transition: background-color 0.3s ease;   
+}
+
+
+nav ul {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    list-style: none;
+    width: 100%;
+    padding: 10px 20px;
+    margin-right: 20px;
+    margin-left: 20px;
+}
+
+nav ul > .links > div {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    list-style: none;
+}
+
+
+nav ul > .hamburger {
+    flex-direction: column;
+    gap: 4px;
+    width: 30px;
+    align-items: center;
+    display: none;
+    position: relative;
+}
+
+nav ul > .hamburger > span {
+    height: 2px;
+    width:100%;
+    background-color: #000;
+    border-radius: 1px;
+    transition: all .45s ease;
+}
+
+nav ul > .hamburger:has(input:checked) > span:first-child {
+    transform: translateY(6px) rotate(135deg);
+}
+
+nav ul > .hamburger:has(input:checked) > span:nth-child(2) {
+    width: 0px;
+    opacity: 0;
+}
+
+nav ul > .hamburger:has(input:checked) > span:nth-child(3) {
+    transform: translateY(-6px) rotate(-135deg);
+    opacity: 0.8;
+}
+
+nav ul > .hamburger > input {
+    position: absolute;
+    top:0;left:0;height: 100%;width: 100%;
+    opacity: 0;
+}
+
+.hamburger:has(input:checked) ~ .links {
+    max-height: 100vh;
+}
+
+nav li a {
+    color: #1d1d1d;
+    font-size: 1rem;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 2px;
+}
+
+nav li a:hover {
+    color: #222;
+    transition: 0.3s ease-in-out;
+}
+
+.logo_nav img {
+    width: 45px;
+    height: 45px;
+    opacity: 0.9;
+    filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.24));
+}
+
+.logo_nav img:hover {
+    opacity: 1;
+    transition: 0.5s ease;
+    filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.484));
+    scale: 1.02;
+}
+
+.nav_instagram a {
+    background-color: black;
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+}
+
+.nav_instagram a:hover {
+    background-color: #222;
+    color: #fff;
+    transition: 0.3s ease-in-out;
+}
+
+.content {
+    display: flex;
+    min-height: 100vh;
+    width: 100%;
+    gap: 5%;
+    margin-inline: 5%;
+}
+
+.summary {
+    display: flex;
+    flex-direction: column;
+    margin-top: 100px;
+}
+
+.summary h1 {
+    font-family: "rubik", sans-serif;
+    font-weight: 500;
+}
+
+::-webkit-scrollbar {
+  width: 3px;             
+  height: 12px;  
+  margin: 0;
+  padding: 0;           
+}
+
+::-webkit-scrollbar-track {
+  background: #f5f5f5;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #000;   
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}

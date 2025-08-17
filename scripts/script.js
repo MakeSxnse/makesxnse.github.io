@@ -1,150 +1,89 @@
+// =========================
+// NAV SCROLL EFFECT
+// =========================
 (function () {
-  'use strict';
-
-  function initNavScrollEffect() {
-    window.addEventListener("scroll", () => {
-      const nav = document.querySelector("nav");
-      const threshold = 0;
-      if (window.scrollY > threshold) {
-        nav.style.boxShadow = "0 0 15px rgba(0, 0, 0, 0.23)";
-        nav.style.transition = "box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out";
-      } else {
-        nav.style.boxShadow = "none";
-      }
-    });
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initNavScrollEffect);
-  } else {
-    initNavScrollEffect();
-  }
+  const nav = document.querySelector("nav");
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 0) {
+      nav.style.boxShadow = "0 0 15px rgba(0, 0, 0, 0.23)";
+      nav.style.transition = "box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out";
+    } else {
+      nav.style.boxShadow = "none";
+    }
+  });
 })();
 
+// =========================
+// TYPEWRITER EFFECT
+// =========================
 (function () {
-  'use strict';
+  const el = document.getElementById("typewriter");
+  const text = "Pro ty, kdo jdou za svými cíli";
+  let index = 0;
+  let deleting = false;
+  const speed = 100;
+  const pause = 1500;
 
-  const TypewriterEffect = {
-    text: "Pro ty, kdo jdou za svými cíli",
-    speed: 100,
-    pause: 1500,
-    index: 0,
-    deleting: false,
-    timeoutId: null,
-    container: null,
+  function animate() {
+    if (!el) return;
 
-    init: function () {
-      this.container = document.getElementById("typewriter");
-      if (!this.container) return;
-      this.animate();
-    },
-
-    animate: function () {
-      if (!this.deleting && this.index <= this.text.length) {
-        if (this.index === 0) {
-          this.container.textContent = "";
-        }
-
-        if (this.index > 0) {
-          const span = document.createElement('span');
-          span.textContent = this.text.charAt(this.index - 1);
-          span.classList.add('fade-in');
-          this.container.appendChild(span);
-        }
-
-        this.index++;
-
-        if (this.index > this.text.length) {
-          this.timeoutId = setTimeout(() => {
-            this.deleting = true;
-            this.animate();
-          }, this.pause);
-          return;
-        }
-      } else if (this.deleting && this.index >= 0) {
-        if (this.container.lastChild) {
-          this.container.removeChild(this.container.lastChild);
-        }
-        this.index--;
-        if (this.index < 0) {
-          this.deleting = false;
-        }
+    if (!deleting) {
+      el.textContent = text.slice(0, index);
+      index++;
+      if (index > text.length) {
+        deleting = true;
+        setTimeout(animate, pause);
+        return;
       }
-
-      this.timeoutId = setTimeout(() => this.animate(), this.speed);
-    },
-
-    destroy: function () {
-      if (this.timeoutId) {
-        clearTimeout(this.timeoutId);
-        this.timeoutId = null;
+    } else {
+      el.textContent = text.slice(0, index);
+      index--;
+      if (index < 0) {
+        deleting = false;
       }
     }
-  };
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => TypewriterEffect.init());
-  } else {
-    TypewriterEffect.init();
+    setTimeout(animate, speed);
   }
+
+  document.addEventListener("DOMContentLoaded", animate);
 })();
 
-function createCarousel({
-  carouselSelector,
-  photoSelector,
-  nextBtnSelector,
-  prevBtnSelector,
-  dotsContainerSelector
-}) {
+// =========================
+// CAROUSEL
+// =========================
+function createCarousel({carouselSelector, photoSelector, nextBtnSelector, prevBtnSelector, dotsContainerSelector}) {
   const carousel = document.querySelector(carouselSelector);
   const photos = document.querySelectorAll(photoSelector);
   const nextBtn = document.querySelector(nextBtnSelector);
   const prevBtn = document.querySelector(prevBtnSelector);
   const dotsContainer = document.querySelector(dotsContainerSelector);
 
-  if (!carousel || photos.length === 0 || !nextBtn || !prevBtn || !dotsContainer) {
-    return;
-  }
+  if (!carousel || photos.length === 0) return;
 
   let index = 0;
 
   photos.forEach((_, i) => {
-    const dot = document.createElement('span');
-    dot.addEventListener('click', () => {
-      index = i;
-      updateCarousel();
-    });
+    const dot = document.createElement("span");
+    dot.addEventListener("click", () => { index = i; update(); });
     dotsContainer.appendChild(dot);
   });
 
-  const dots = dotsContainer.querySelectorAll('span');
+  const dots = dotsContainer.querySelectorAll("span");
 
-  function updateCarousel() {
+  function update() {
     carousel.style.transform = `translateX(-${index * 100}%)`;
-    dots.forEach(dot => dot.classList.remove('active'));
-    if (dots[index]) dots[index].classList.add('active');
+    dots.forEach(dot => dot.classList.remove("active"));
+    if (dots[index]) dots[index].classList.add("active");
   }
 
-  nextBtn.addEventListener('click', () => {
-    index = (index + 1) % photos.length;
-    updateCarousel();
-  });
+  nextBtn.addEventListener("click", () => { index = (index + 1) % photos.length; update(); });
+  prevBtn.addEventListener("click", () => { index = (index - 1 + photos.length) % photos.length; update(); });
 
-  prevBtn.addEventListener('click', () => {
-    index = (index - 1 + photos.length) % photos.length;
-    updateCarousel();
-  });
-
-  updateCarousel();
-
-  setInterval(() => {
-    index = (index + 1) % photos.length;
-    updateCarousel();
-  }, 6000);
+  update();
+  setInterval(() => { index = (index + 1) % photos.length; update(); }, 6000);
 }
 
-// Spuštění carouselů pro accessories a clothes
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
   createCarousel({
     carouselSelector: '.acc_carousel',
     photoSelector: '.acc_photo',
@@ -167,53 +106,70 @@ document.addEventListener('DOMContentLoaded', () => {
   updateCartCounter();
 });
 
-// ---------------------------------------------
-// Nákupní košík
+// =========================
+// KOŠÍK
+// =========================
 let cartCount = 0;
+
+function getCartItems() {
+  return JSON.parse(localStorage.getItem("cartItems")) || [];
+}
+
+function saveCartItems(items) {
+  localStorage.setItem("cartItems", JSON.stringify(items));
+}
+
 function addToCart(size, variant) {
-  const cartIcon = document.querySelector(".cart_icon")
-  cartIcon.classList.add("animate")
-  cartIcon.addEventListener("animationend", ()=>{
-    cartCount++;
-    updateCartCounter();
-    cartIcon.classList.remove("animate")
-  }, {once: true})
+  const items = getCartItems();
+  items.push({size, variant, quantity: 1});
+  saveCartItems(items);
+
+  cartCount++;
+  updateCartCounter();
+
+  const cartIcon = document.querySelector(".cart_icon");
+  if (cartIcon) {
+    cartIcon.classList.add("animate");
+    cartIcon.addEventListener("animationend", () => { cartIcon.classList.remove("animate"); }, {once: true});
+  }
 }
 
 function updateCartCounter() {
-  const counter = document.getElementById('cartCounter');
-  if (!counter) return;
-  
-  let text = '';
+  const counter = document.getElementById("cartCounter");
+  const items = getCartItems();
+  const count = items.length;
 
-  if (count === 1) {
-    text = '1 položka';
-  } else if (count >= 2 && count <= 4) {
-    text = `${count} položky`;
-  } else {
-    text = `${count} položek`;
-  }
-  
+  if (!counter) return;
+
+  let text = "";
+  if (count === 1) text = "1 položka";
+  else if (count >= 2 && count <= 4) text = `${count} položky`;
+  else text = `${count} položek`;
+
   counter.textContent = text;
 }
 
 function initAddToCartButtons() {
-  const Forms = document.querySelectorAll(".accessories_others");
-  Forms.forEach(e=>{
-    e.addEventListener("submit", function(e) {
+  const forms = document.querySelectorAll(".accessories_others");
+  forms.forEach(form => {
+    form.addEventListener("submit", (e) => {
       e.preventDefault();
-      const selects = document.querySelectorAll('.select');
-      const sizeSelect = selects[0];
-      const variantSelect = selects[1];
-
-      addToCart(sizeSelect.value, variantSelect.value);
+      const selects = form.querySelectorAll(".select");
+      const size = selects[0].value;
+      const variant = selects[1].value;
+      addToCart(size, variant);
     });
   });
 }
 
+document.getElementById("clear-cart").addEventListener("click", () => {
+  clearCart();
+});
+
+
 function setupCartVisibilityOnScroll() {
-  const cart = document.getElementById('cart');
-  const footer = document.querySelector('footer');
+  const cart = document.getElementById("cart");
+  const footer = document.querySelector("footer");
   if (!cart || !footer) return;
 
   function checkScroll() {
@@ -221,35 +177,29 @@ function setupCartVisibilityOnScroll() {
     const windowHeight = window.innerHeight;
     const limit = windowHeight * 1.2;
     const footerTop = footer.getBoundingClientRect().top + scrollY;
-    const distanceToBottom = (scrollY + windowHeight) - footerTop;
 
-    if (scrollY > limit) {
-      cart.classList.add('visible');
-    } else {
-      cart.classList.remove('visible');
-    }
+    if (scrollY > limit) cart.classList.add("visible");
+    else cart.classList.remove("visible");
   }
 
-  window.addEventListener('scroll', checkScroll);
+  window.addEventListener("scroll", checkScroll);
   checkScroll();
 }
 
 function renderCartItems() {
-  const cartContainer = document.querySelector('.kosik_items');
+  const cartContainer = document.querySelector(".kosik_items");
   if (!cartContainer) return;
 
-  const items = JSON.parse(localStorage.getItem('cartItems')) || [];
-
+  const items = getCartItems();
   if (items.length === 0) {
-    cartContainer.innerHTML = '<p>Košík je prázdný.</p>';
+    cartContainer.innerHTML = "<p>Košík je prázdný.</p>";
     return;
   }
 
-  cartContainer.innerHTML = '';
-
+  cartContainer.innerHTML = "";
   items.forEach((item, index) => {
-    const div = document.createElement('div');
-    div.classList.add('kosik_item');
+    const div = document.createElement("div");
+    div.classList.add("kosik_item");
     div.innerHTML = `
       <p><strong>Položka ${index + 1}:</strong></p>
       <p>Velikost: ${item.size}</p>
@@ -261,11 +211,7 @@ function renderCartItems() {
 }
 
 function clearCart() {
-  localStorage.removeItem('cartItems');
-  cartItems = [];
+  localStorage.removeItem("cartItems");
   renderCartItems();
   updateCartCounter();
 }
-
-
-// && distanceToBottom < -50
