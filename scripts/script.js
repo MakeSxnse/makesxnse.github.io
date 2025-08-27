@@ -347,14 +347,16 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="item-info">
               <h3>${item.productName}</h3>
               <div class="item-details">
-                <span class="size">Velikost: ${item.size}</span>
-                <span class="variant">Varianta: ${item.variant}</span>
-                ${item.price ? `<span class="price">${item.price}</span>` : ''}
+                ${[
+                  `Velikost: ${item.size}`,
+                  `Varianta: ${item.variant}`,
+                  item.price ? `${item.price} Kč` : null
+                ].filter(Boolean).join(' | ')}
               </div>
             </div>
             <div class="item-actions">
               <button class="remove-item" data-index="${index}">
-                <span>✕</span> Odstranit
+                 <img src="/images/Trash 2.png" alt="Odstranit" title="Odstranit z košíku" />
               </button>
             </div>
           </div>
@@ -369,10 +371,6 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>
           
           <div class="cart-summary">
-            <div class="summary-row">
-              <span>Počet položek:</span>
-              <span>${cart.length}</span>
-            </div>
             ${totalPrice > 0 ? `
               <div class="summary-row total">
                 <span>Celková cena:</span>
@@ -382,7 +380,6 @@ document.addEventListener('DOMContentLoaded', () => {
             
             <div class="cart-actions">
               <button class="clear-cart-btn">Vyprázdnit košík</button>
-              <button class="checkout-btn">Pokračovat k objednávce</button>
             </div>
           </div>
         </div>
@@ -495,3 +492,22 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 });
+
+const popup = document.getElementById("popup");
+const openBtn = document.getElementById("openPopup");
+const closeBtn = document.getElementById("closePopup");
+
+openBtn.onclick = () => {
+  popup.style.display = "flex";
+};
+
+closeBtn.onclick = () => {
+  popup.style.display = "none";
+};
+
+window.onclick = (e) => {
+  if (e.target === popup) {
+    popup.style.display = "none";
+  }
+};
+
