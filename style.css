@@ -351,9 +351,9 @@ nav li a:hover {
   margin-bottom: 250px;
 }
 
-.carousel-wrapper {
-  flex: 1 1 400px;
-  max-width: 500px;
+.carousel-wrapper { 
+  flex: 1 1 500px;
+  max-width: 600px;
   overflow: hidden;
   position: relative;
 }
@@ -366,7 +366,8 @@ nav li a:hover {
 
 .photo {
   flex: 1;
-  height: 400px;
+  height: 500px;
+  min-height: 400px;
   background-size: cover;
   background-position: center;
 }
@@ -426,7 +427,7 @@ nav li a:hover {
   flex: 1 1 300px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 15px;
   font-family: "Courier Prime", monospace;
 }
 
