@@ -159,7 +159,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const cartCounter = document.getElementById("cartCounter");
   const cartElement = document.getElementById("cart");
   const cartContainer = document.getElementById("cartContainer");
-  const clearBtn = document.getElementById("clearCartBtn");
   const footer = document.querySelector("footer");
 
   // Update cart counter display
@@ -230,13 +229,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Add event listener for cart visibility
   window.addEventListener("scroll", handleCartVisibility);
   
-  // Initial cart counter update
   updateCartCounter();
 
-  // Handle add to cart buttons (multiple selectors for compatibility)
   const addToCartSelectors = [
     '.accessories_others', 
     '.add_to_cart', 
@@ -254,7 +250,6 @@ document.addEventListener('DOMContentLoaded', () => {
       } else if (isButton) {
         element.addEventListener("click", handleAddToCart);
       } else {
-        // For other elements, look for submit buttons inside
         const submitBtn = element.querySelector('button[type="submit"], input[type="submit"], .add_to_cart');
         if (submitBtn) {
           submitBtn.addEventListener("click", handleAddToCart);
@@ -272,7 +267,6 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    // Get product information from form
     const productNameSelect = form.querySelector('select[name="product_name"], select:first-of-type');
     const sizeSelect = form.querySelector('select[name="size"], select:nth-of-type(2)');
     const variantSelect = form.querySelector('select[name="variant"], select:nth-of-type(3)');
@@ -288,15 +282,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const variant = variantSelect.value;
     const price = priceElement ? priceElement.textContent.replace(/[^\d,.-]/g, '').trim() : '';
 
-    // Validate selections
     if (!productName || !size || !variant) {
-      alert('Prosím vyberte všechny možnosti');
       return;
     }
 
-    // Create product object
     const product = {
-      id: Date.now() + Math.random(), // Simple unique ID
+      id: Date.now() + Math.random(),
       productName: productName,
       size: size,
       variant: variant,
@@ -304,20 +295,13 @@ document.addEventListener('DOMContentLoaded', () => {
       dateAdded: new Date().toISOString()
     };
 
-    // Add to cart
     cart.push(product);
     saveCart();
     updateCartCounter();
-
-    // Show flying notification
     showFlyingNotification(productName, e.target);
-
     console.log('Product added to cart:', product);
   }
 
-  // -------------------------
-  // CART.HTML SPECIFIC LOGIC
-  // -------------------------
   const kosikItems = document.querySelector('.kosik_items');
   
   if (kosikItems) {
@@ -334,10 +318,8 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
-      // Calculate total price
       let totalPrice = 0;
       const cartItemsHtml = cart.map((item, index) => {
-        // Extract numeric value from price string
         const priceMatch = item.price ? item.price.match(/\d+/) : null;
         const itemPrice = priceMatch ? parseInt(priceMatch[0]) : 0;
         totalPrice += itemPrice;
@@ -363,7 +345,6 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
       }).join('');
 
-      // Create cart summary
       kosikItems.innerHTML = `
         <div class="cart-content">
           <div class="cart-items-list">
@@ -385,49 +366,29 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
       `;
 
-      // Add event listeners for remove buttons
       document.querySelectorAll(".remove-item").forEach(btn => {
         btn.addEventListener("click", () => {
           const index = parseInt(btn.dataset.index);
           const removedItem = cart[index];
-          
-          if (confirm(`Opravdu chcete odstranit "${removedItem.productName}" z košíku?`)) {
-            cart.splice(index, 1);
-            saveCart();
-            updateCartCounter();
-            renderCart();
-            
-            // Show notification
-            showRemoveNotification(removedItem.productName);
-          }
+          cart.splice(index, 1);
+          saveCart();
+          updateCartCounter();
+          renderCart();
+          showRemoveNotification(removedItem.productName);
         });
       });
 
-      // Clear cart button
       const clearCartBtn = document.querySelector('.clear-cart-btn');
       if (clearCartBtn) {
         clearCartBtn.addEventListener("click", () => {
-          if (confirm('Opravdu chcete vyprázdnit celý košík?')) {
-            cart = [];
-            saveCart();
-            updateCartCounter();
-            renderCart();
-          }
-        });
-      }
-
-      // Checkout button (placeholder)
-      const checkoutBtn = document.querySelector('.checkout-btn');
-      if (checkoutBtn) {
-        checkoutBtn.addEventListener("click", () => {
-          alert('Funkce objednávky bude brzy dostupná!');
-          // Here you would typically redirect to checkout page
-          // window.location.href = 'checkout.html';
+          cart = [];
+          saveCart();
+          updateCartCounter();
+          renderCart();
         });
       }
     }
 
-    // Show notification when item is removed
     function showRemoveNotification(productName) {
       const notification = document.createElement("div");
       notification.className = "remove_notification";
@@ -449,12 +410,10 @@ document.addEventListener('DOMContentLoaded', () => {
       
       document.body.appendChild(notification);
       
-      // Animate in
       setTimeout(() => {
         notification.style.transform = "translateX(0)";
       }, 100);
       
-      // Animate out and remove
       setTimeout(() => {
         notification.style.transform = "translateX(100%)";
         setTimeout(() => {
@@ -465,11 +424,9 @@ document.addEventListener('DOMContentLoaded', () => {
       }, 2000);
     }
 
-    // Initial cart render
     renderCart();
   }
 
-  // Make cart globally accessible for debugging
   window.cartDebug = {
     getCart: () => cart,
     clearCart: () => {
@@ -510,4 +467,3 @@ window.onclick = (e) => {
     popup.style.display = "none";
   }
 };
-
